@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album Photo</title>
+    <title>Cassandre photographie</title>
     <style>
         body {
             background-color: black;
             color: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Bodoni MT Condensed', Arial, sans-serif;
             text-align: center;
             padding: 50px;
         }
@@ -35,13 +35,13 @@
 </head>
 <body>
 
-    <h1>Album Photo</h1>
-    <p>Entrez le code pour voir les photos :</p>
+    <h1>Cassandre photographie</h1>
+    <p>Entrez code pour avoir accès aux photos :</p>
     <input type="text" id="code" placeholder="Entrez le code">
     <button onclick="verifierCode()">Voir les photos</button>
 
     <div id="photos">
-        <h2>Voici les photos :</h2>
+        <h2 id="branche-title">Voici les photos :</h2>
         <div id="image-container"></div>
     </div>
 
@@ -49,6 +49,7 @@
         function verifierCode() {
             var code = document.getElementById('code').value.toLowerCase();
             var imageContainer = document.getElementById('image-container');
+            var brancheTitle = document.getElementById('branche-title');
             imageContainer.innerHTML = ''; // Réinitialiser les images
 
             // Mapping des codes avec les branches correspondantes
@@ -82,13 +83,14 @@
             };
 
             var baseUrls = {
-                'chien': 'https://github.com/Topazblue-moderator/Album-photo/blob/chien/',
-                'mariage': 'https://github.com/Topazblue-moderator/Album-photo/blob/mariage/',
-                'naissance': 'https://github.com/Topazblue-moderator/Album-photo/blob/naissance/'
+                'chien': 'https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/chien/',
+                'mariage': 'https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/mariage/',
+                'naissance': 'https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/naissance/'
             };
 
             if (branches[code]) {
                 afficherImages(code, branches[code], baseUrls[code]);
+                brancheTitle.textContent = `Voici les photos de la branche ${code.charAt(0).toUpperCase() + code.slice(1)} :`;
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
@@ -99,7 +101,7 @@
 
             imageNames.forEach(function(imageName) {
                 var img = document.createElement('img');
-                img.src = `${baseUrl}${imageName}?raw=true`;  // URL brute
+                img.src = `${baseUrl}${imageName}`;  // URL brute
                 img.alt = imageName;
                 img.onerror = function() {
                     console.error('Erreur de chargement de l\'image :', img.src);
