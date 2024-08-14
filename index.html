@@ -6,30 +6,53 @@
     <title>Cassandre photographie</title>
     <style>
         body {
-            background-color: black;
+            background-image: url('https://github.com/Topazblue-moderator/Album-photo/blob/main/Image1.jpg?raw=true');
+            background-size: cover; /* Couvre toute la page */
+            background-position: center; /* Centre l'image */
+            background-repeat: no-repeat; /* Évite que l'image se répète */
             color: white;
             font-family: 'Bodoni MT Condensed', Arial, sans-serif;
             text-align: center;
             padding: 50px;
+            margin: 0;
         }
         #photos {
             display: none;
             margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent pour améliorer la lisibilité */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #photos h2 {
+            margin: 0;
         }
         img {
             max-width: 100%;
             height: auto;
             margin: 10px;
+            border: 2px solid white; /* Bordure blanche pour les images */
+            border-radius: 5px;
         }
         input[type="text"] {
             padding: 10px;
             font-size: 16px;
             margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #333; /* Fond sombre pour le champ de texte */
+            color: white;
         }
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #555;
+            color: white;
+        }
+        button:hover {
+            background-color: #777;
         }
     </style>
 </head>
@@ -90,7 +113,7 @@
 
             if (branches[code]) {
                 afficherImages(code, branches[code], baseUrls[code]);
-                brancheTitle.textContent = ` ${code.charAt(0).toUpperCase() + code.slice(1)} :`;
+                brancheTitle.textContent = `${code.charAt(0).toUpperCase() + code.slice(1)} :`;
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
