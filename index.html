@@ -67,18 +67,48 @@
 
         function afficherImages(branche) {
             var imageContainer = document.getElementById('image-container');
-            var maxImages = 50; // Par exemple, on essaye de charger jusqu'à 10 images
+            var imageNames = [];
 
-            for (var i = 1; i <= maxImages; i++) {
+            if (branche === 'chien') {
+                imageNames = [
+                    'IMG_9459.jpg',
+                    'IMG_9460.jpg',
+                    'IMG_9462.jpg',
+                    'IMG_9477.jpg',
+                    'IMG_9481.jpg',
+                    'IMG_9482-2.jpg'
+                ];
+            } else if (branche === 'mariage') {
+                imageNames = [
+                    '3B0A3824.jpg',
+                    '3B0A3825.jpg',
+                    '3B0A3827.jpg',
+                    '3B0A3828.jpg',
+                    '3B0A3845.jpg',
+                    '3B0A3847.jpg',
+                    '3B0A3851.jpg',
+                    '3B0A3852.jpg'
+                ];
+            } else if (branche === 'naissance') {
+                imageNames = [
+                    'IMG_4342.jpg',
+                    'IMG_4350.jpg',
+                    'IMG_4368.jpg',
+                    'IMG_4369.jpg',
+                    'IMG_4372.jpg',
+                    'IMG_4376.jpg'
+                ];
+            }
+
+            imageNames.forEach(function(imageName) {
                 var img = document.createElement('img');
-                img.src = `https://topazblue-moderator.github.io/Album-photo/${branche}/photo${i}.jpg`;
-                img.alt = `Photo ${i}`;
+                img.src = `https://topazblue-moderator.github.io/Album-photo/${branche}/${imageName}`;
+                img.alt = imageName;
                 img.onerror = function() {
-                    // Supprimer l'image si elle ne se charge pas
                     this.style.display = 'none';
                 };
                 imageContainer.appendChild(img);
-            }
+            });
 
             document.getElementById('photos').style.display = 'block';
         }
