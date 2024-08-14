@@ -11,6 +11,10 @@
             font-family: 'Bodoni MT Condensed', Arial, sans-serif;
             text-align: center;
             padding: 50px;
+            background-image: url('https://github.com/Topazblue-moderator/Album-photo/blob/main/Image1.jpg?raw=true');
+            background-size: cover; /* Assure que l'image couvre toute la page */
+            background-position: center; /* Centre l'image sur la page */
+            background-repeat: no-repeat; /* Évite que l'image se répète */
         }
         #photos {
             display: none;
@@ -90,7 +94,7 @@
 
             if (branches[code]) {
                 afficherImages(code, branches[code], baseUrls[code]);
-                brancheTitle.textContent = ` ${code.charAt(0).toUpperCase() + code.slice(1)} :`;
+                brancheTitle.textContent = `Voici les photos de la branche ${code.charAt(0).toUpperCase() + code.slice(1)} :`;
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
