@@ -42,19 +42,47 @@
 
     <div id="photos">
         <h2>Voici les photos :</h2>
-        <img src="https://drive.google.com/uc?id=1cpJU_NPAgs32xWj9c8WWLLgRfRmMXHWU" alt="Photo 1">
-        <img src="https://drive.google.com/uc?id=1tEfhGdIprI6-MzCIasqFDVMCvZGFRze5" alt="Photo 2">
-        <img src="https://drive.google.com/uc?id=1ex88rGcc3j7W3zeacpz0lOhvQEXYrAz0" alt="Photo 3">
+        <div id="image-container"></div>
     </div>
 
     <script>
         function verifierCode() {
-            var code = document.getElementById('code').value;
-            if (code === '1234') {
-                document.getElementById('photos').style.display = 'block';
+            var code = document.getElementById('code').value.toLowerCase();
+            var imageContainer = document.getElementById('image-container');
+            imageContainer.innerHTML = ''; // Réinitialiser les images
+
+            if (code === 'chien') {
+                afficherImages([
+                    'https://mon-site.github.io/chien/photo1.jpg',
+                    'https://mon-site.github.io/chien/photo2.jpg',
+                    'https://mon-site.github.io/chien/photo3.jpg'
+                ]);
+            } else if (code === 'naissance') {
+                afficherImages([
+                    'https://mon-site.github.io/naissance/photo1.jpg',
+                    'https://mon-site.github.io/naissance/photo2.jpg',
+                    'https://mon-site.github.io/naissance/photo3.jpg'
+                ]);
+            } else if (code === 'mariage') {
+                afficherImages([
+                    'https://mon-site.github.io/mariage/photo1.jpg',
+                    'https://mon-site.github.io/mariage/photo2.jpg',
+                    'https://mon-site.github.io/mariage/photo3.jpg'
+                ]);
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
+        }
+
+        function afficherImages(images) {
+            var imageContainer = document.getElementById('image-container');
+            images.forEach(function(src) {
+                var img = document.createElement('img');
+                img.src = src;
+                img.alt = 'Photo';
+                imageContainer.appendChild(img);
+            });
+            document.getElementById('photos').style.display = 'block';
         }
     </script>
 
