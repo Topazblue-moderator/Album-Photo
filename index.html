@@ -90,10 +90,11 @@
 
         function afficherImages(branche, imageNames) {
             var imageContainer = document.getElementById('image-container');
+            var baseUrl = `https://github.com/Topazblue-moderator/Album-photo/blob/chien/`;
 
             imageNames.forEach(function(imageName) {
                 var img = document.createElement('img');
-                img.src = `https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/main/${branche}/${imageName}`;
+                img.src = `${baseUrl}${imageName}?raw=true`;  // URL brute
                 img.alt = imageName;
                 img.onerror = function() {
                     console.error('Erreur de chargement de l\'image :', img.src);
