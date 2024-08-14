@@ -46,59 +46,28 @@
     </div>
 
     <script>
-        function verifierCode() {
+        // Fonction pour récupérer les données JSON
+        async function getImagesData() {
+            const response = await fetch('images.json');
+            return await response.json();
+        }
+
+        async function verifierCode() {
             var code = document.getElementById('code').value.toLowerCase();
             var imageContainer = document.getElementById('image-container');
             imageContainer.innerHTML = ''; // Réinitialiser les images
 
-            // Mapping des codes avec les branches correspondantes
-            var branches = {
-                'chien': 'chien',
-                'naissance': 'naissance',
-                'mariage': 'mariage'
-            };
+            const branches = await getImagesData();
 
             if (branches[code]) {
-                afficherImages(branches[code]);
+                afficherImages(code, branches[code]);
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
         }
 
-        function afficherImages(branche) {
+        function afficherImages(branche, imageNames) {
             var imageContainer = document.getElementById('image-container');
-            var imageNames = [];
-
-            if (branche === 'chien') {
-                imageNames = [
-                    'IMG_9459.jpg',
-                    'IMG_9460.jpg',
-                    'IMG_9462.jpg',
-                    'IMG_9477.jpg',
-                    'IMG_9481.jpg',
-                    'IMG_9482-2.jpg'
-                ];
-            } else if (branche === 'mariage') {
-                imageNames = [
-                    '3B0A3824.jpg',
-                    '3B0A3825.jpg',
-                    '3B0A3827.jpg',
-                    '3B0A3828.jpg',
-                    '3B0A3845.jpg',
-                    '3B0A3847.jpg',
-                    '3B0A3851.jpg',
-                    '3B0A3852.jpg'
-                ];
-            } else if (branche === 'naissance') {
-                imageNames = [
-                    'IMG_4342.jpg',
-                    'IMG_4350.jpg',
-                    'IMG_4368.jpg',
-                    'IMG_4369.jpg',
-                    'IMG_4372.jpg',
-                    'IMG_4376.jpg'
-                ];
-            }
 
             imageNames.forEach(function(imageName) {
                 var img = document.createElement('img');
