@@ -93,7 +93,7 @@
 
             imageNames.forEach(function(imageName) {
                 var img = document.createElement('img');
-                img.src = `https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/main/album-photos/${branche}/${imageName}`;
+                img.src = `https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/main/${branche}/${imageName}`;
                 img.alt = imageName;
                 img.onerror = function() {
                     console.error('Erreur de chargement de l\'image :', img.src);
