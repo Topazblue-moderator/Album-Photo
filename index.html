@@ -51,40 +51,35 @@
             var imageContainer = document.getElementById('image-container');
             imageContainer.innerHTML = ''; // Réinitialiser les images
 
-            if (code === 'chien') {
-                afficherImages([
-                    'https://github.com/Topazblue-moderator/Album-photo/blob/chien/IMG_9459.jpg',
-                    'https://github.com/Topazblue-moderator/Album-photo/blob/chien/IMG_9460.jpg',
-                    'https://github.com/Topazblue-moderator/Album-photo/blob/chien/IMG_9462.jpg',
-                    'https://github.com/Topazblue-moderator/Album-photo/blob/chien/IMG_9477.jpg',
-                    'https://github.com/Topazblue-moderator/Album-photo/blob/chien/IMG_9481.jpg',
-                    'https://github.com/Topazblue-moderator/Album-photo/blob/chien/IMG_9482-2.jpg'
-                ]);
-            } else if (code === 'naissance') {
-                afficherImages([
-                    'https://mon-site.github.io/naissance/photo1.jpg',
-                    'https://mon-site.github.io/naissance/photo2.jpg',
-                    'https://mon-site.github.io/naissance/photo3.jpg'
-                ]);
-            } else if (code === 'mariage') {
-                afficherImages([
-                    'https://mon-site.github.io/mariage/photo1.jpg',
-                    'https://mon-site.github.io/mariage/photo2.jpg',
-                    'https://mon-site.github.io/mariage/photo3.jpg'
-                ]);
+            // Mapping des codes avec les branches correspondantes
+            var branches = {
+                'chien': 'chien',
+                'naissance': 'naissance',
+                'mariage': 'mariage'
+            };
+
+            if (branches[code]) {
+                afficherImages(branches[code]);
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
         }
 
-        function afficherImages(images) {
+        function afficherImages(branche) {
             var imageContainer = document.getElementById('image-container');
-            images.forEach(function(src) {
+            var maxImages = 100; // Par exemple, on essaye de charger jusqu'à 10 images
+
+            for (var i = 1; i <= maxImages; i++) {
                 var img = document.createElement('img');
-                img.src = src;
-                img.alt = 'Photo';
+                img.src = `https://mon-site.github.io/${branche}/photo${i}.jpg`;
+                img.alt = `Photo ${i}`;
+                img.onerror = function() {
+                    // Supprimer l'image si elle ne se charge pas
+                    this.style.display = 'none';
+                };
                 imageContainer.appendChild(img);
-            });
+            }
+
             document.getElementById('photos').style.display = 'block';
         }
     </script>
