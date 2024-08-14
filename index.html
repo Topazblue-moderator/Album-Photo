@@ -81,16 +81,21 @@
                 ]
             };
 
+            var baseUrls = {
+                'chien': 'https://github.com/Topazblue-moderator/Album-photo/blob/chien/',
+                'mariage': 'https://github.com/Topazblue-moderator/Album-photo/blob/mariage/',
+                'naissance': 'https://github.com/Topazblue-moderator/Album-photo/blob/naissance/'
+            };
+
             if (branches[code]) {
-                afficherImages(code, branches[code]);
+                afficherImages(code, branches[code], baseUrls[code]);
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
         }
 
-        function afficherImages(branche, imageNames) {
+        function afficherImages(branche, imageNames, baseUrl) {
             var imageContainer = document.getElementById('image-container');
-            var baseUrl = `https://github.com/Topazblue-moderator/Album-photo/blob/chien/`;
 
             imageNames.forEach(function(imageName) {
                 var img = document.createElement('img');
