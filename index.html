@@ -6,15 +6,24 @@
     <title>Cassandre photographie</title>
     <style>
         body {
-            background-color: black;
+            background-image: url('https://github.com/Topazblue-moderator/Album-photo/blob/main/Image1.jpg?raw=true');
+            background-size: cover; /* Assure que l'image couvre toute la page */
+            background-position: center; /* Centre l'image sur la page */
+            background-repeat: no-repeat; /* Évite que l'image se répète */
             color: white;
             font-family: 'Bodoni MT Condensed', Arial, sans-serif;
             text-align: center;
             padding: 50px;
+            margin: 0;
         }
         #photos {
             display: none;
             margin-top: 20px;
+        }
+        #photos h2 {
+            background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour lisibilité */
+            padding: 10px;
+            border-radius: 5px;
         }
         img {
             max-width: 100%;
@@ -25,11 +34,20 @@
             padding: 10px;
             font-size: 16px;
             margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+        }
+        button:hover {
+            background-color: #555;
         }
     </style>
 </head>
@@ -90,7 +108,7 @@
 
             if (branches[code]) {
                 afficherImages(code, branches[code], baseUrls[code]);
-                brancheTitle.textContent = ` ${code.charAt(0).toUpperCase() + code.slice(1)} :`;
+                brancheTitle.textContent = `${code.charAt(0).toUpperCase() + code.slice(1)} :`;
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
