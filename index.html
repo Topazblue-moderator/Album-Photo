@@ -46,26 +46,42 @@
     </div>
 
     <script>
-        async function getImagesData() {
-            try {
-                const response = await fetch('https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/main/images.json');
-                if (!response.ok) {
-                    throw new Error('Erreur de réseau');
-                }
-                return await response.json();
-            } catch (error) {
-                console.error('Erreur lors de la récupération des données JSON :', error);
-            }
-        }
-
-        async function verifierCode() {
+        function verifierCode() {
             var code = document.getElementById('code').value.toLowerCase();
             var imageContainer = document.getElementById('image-container');
             imageContainer.innerHTML = ''; // Réinitialiser les images
 
-            const branches = await getImagesData();
+            // Mapping des codes avec les branches correspondantes
+            var branches = {
+                'chien': [
+                    'IMG_9459.jpg',
+                    'IMG_9460.jpg',
+                    'IMG_9462.jpg',
+                    'IMG_9477.jpg',
+                    'IMG_9481.jpg',
+                    'IMG_9482-2.jpg'
+                ],
+                'mariage': [
+                    '3B0A3824.jpg',
+                    '3B0A3825.jpg',
+                    '3B0A3827.jpg',
+                    '3B0A3828.jpg',
+                    '3B0A3845.jpg',
+                    '3B0A3847.jpg',
+                    '3B0A3851.jpg',
+                    '3B0A3852.jpg'
+                ],
+                'naissance': [
+                    'IMG_4342.jpg',
+                    'IMG_4350.jpg',
+                    'IMG_4368.jpg',
+                    'IMG_4369.jpg',
+                    'IMG_4372.jpg',
+                    'IMG_4376.jpg'
+                ]
+            };
 
-            if (branches && branches[code]) {
+            if (branches[code]) {
                 afficherImages(code, branches[code]);
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
