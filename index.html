@@ -19,7 +19,7 @@
         #photos {
             display: none;
             margin-top: 20px;
-            background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent pour lisibilité */
+            background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent pour améliorer la lisibilité */
             padding: 20px;
             border-radius: 10px;
         }
@@ -64,7 +64,7 @@
     <button onclick="verifierCode()">Voir les photos</button>
 
     <div id="photos">
-        <h2 id="branche-title">Voici les photos :</h2>
+        <h2 id="branche-title"></h2>
         <div id="image-container"></div>
     </div>
 
@@ -89,4 +89,53 @@
                     '3B0A3824.jpg',
                     '3B0A3825.jpg',
                     '3B0A3827.jpg',
-         
+                    '3B0A3828.jpg',
+                    '3B0A3845.jpg',
+                    '3B0A3847.jpg',
+                    '3B0A3851.jpg',
+                    '3B0A3852.jpg'
+                ],
+                'naissance': [
+                    'IMG_4342.jpg',
+                    'IMG_4350.jpg',
+                    'IMG_4368.jpg',
+                    'IMG_4369.jpg',
+                    'IMG_4372.jpg',
+                    'IMG_4376.jpg'
+                ]
+            };
+
+            var baseUrls = {
+                'chien': 'https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/chien/',
+                'mariage': 'https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/mariage/',
+                'naissance': 'https://raw.githubusercontent.com/Topazblue-moderator/Album-photo/naissance/'
+            };
+
+            if (branches[code]) {
+                afficherImages(code, branches[code], baseUrls[code]);
+                brancheTitle.textContent = `${code.charAt(0).toUpperCase() + code.slice(1)}`;
+            } else {
+                alert('Code incorrect. Veuillez réessayer.');
+            }
+        }
+
+        function afficherImages(branche, imageNames, baseUrl) {
+            var imageContainer = document.getElementById('image-container');
+
+            imageNames.forEach(function(imageName) {
+                var img = document.createElement('img');
+                img.src = `${baseUrl}${imageName}`;  // URL brute
+                img.alt = imageName;
+                img.onerror = function() {
+                    console.error('Erreur de chargement de l\'image :', img.src);
+                    this.style.display = 'none';
+                };
+                imageContainer.appendChild(img);
+            });
+
+            document.getElementById('photos').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
