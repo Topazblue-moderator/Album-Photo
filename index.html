@@ -94,7 +94,7 @@
 
             if (branches[code]) {
                 afficherImages(code, branches[code], baseUrls[code]);
-                brancheTitle.textContent = `Voici les photos de la branche ${code.charAt(0).toUpperCase() + code.slice(1)} :`;
+                brancheTitle.textContent = `${code.charAt(0).toUpperCase() + code.slice(1)} :`;
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
