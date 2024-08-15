@@ -64,7 +64,7 @@
     <button onclick="verifierCode()">Voir les photos</button>
 
     <div id="photos">
-        <h2 id="branche-title">Voici les photos :</h2>
+        <h2 id="branche-title"></h2>
         <div id="image-container"></div>
     </div>
 
@@ -113,7 +113,7 @@
 
             if (branches[code]) {
                 afficherImages(code, branches[code], baseUrls[code]);
-                brancheTitle.textContent = `${code.charAt(0).toUpperCase() + code.slice(1)} :`;
+                brancheTitle.textContent = `${code.charAt(0).toUpperCase() + code.slice(1)}`;
             } else {
                 alert('Code incorrect. Veuillez réessayer.');
             }
